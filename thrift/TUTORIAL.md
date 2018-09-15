@@ -31,7 +31,7 @@ src named git.apache.org.
 Finally you will need the latest version of Bender, which you can get by running:
 
 ```
-go get github.com/pinterest/bender
+go get github.com/lenjoy/bender
 ```
 
 ## Writing the Thrift Server and Client
@@ -45,8 +45,11 @@ In the following, all commands should be run from the `$GOROOT` directory, unles
 
 ### Create the Go Package
 
-Create a new Go package for your Thrift service and client. We'll refer to this as `$PKG` in this
-document, and it can be any path you want. At Pinterest, for example, we use `github.com/pinterest`.
+Create a new Go package for your Thrift service and client. 
+
+```
+export PKG=github.com/lenjoy
+```
 
 ```
 cd $GOPATH
@@ -276,7 +279,7 @@ This creates a separate goroutine to generate the requests and send them on the 
 request generation works concurrently with request execution. That means the inner loop of Bender
 isn't spending time creating requests (which could be expensive if we're reading them from disk or
 from a remote database, for instance). You can modify this function to read requests from anywhere
-including server query logs, remote services or databases. At Pinterest, for instance, our Thrift
+including server query logs, remote services or databases. For instance, the Thrift
 servers log the binary Thrift requests to disk before deserializing them on the server, so we have
 a request generator that reads those files and reconstructs the production requests from them.
 
@@ -349,12 +352,12 @@ Then create a file named `main.go` in that directory and add these lines to it:
 package main
 
 import (
-	"github.com/pinterest/bender"
-	bthrift "github.com/pinterest/bender/thrift"
+	"github.com/lenjoy/bender"
+	bthrift "github.com/lenjoy/bender/thrift"
 	"git.apache.org/thrift.git/lib/go/thrift"
 	"log"
 	"os"
-	"github.com/pinterest/bender/hist"
+	"github.com/lenjoy/bender/hist"
 	"fmt"
 	"time"
 	"$PKG/hellothrift/hello"
