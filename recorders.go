@@ -19,7 +19,7 @@ package bender
 import (
 	"log"
 
-	"github.com/pinterest/bender/hist"
+	"github.com/lenjoy/bender/hist"
 )
 
 // A Recorder records a message.
